@@ -37,3 +37,7 @@ composer.lock
 *.pem
 *.p12
 *.pfx
+
+# exclude folder and files
+itflow/
+
