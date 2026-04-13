@@ -37,8 +37,20 @@ class Database {
     }
 
     public function query(string $sql, array $params = []): \PDOStatement {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
+    }
+
+    public function fetch(string $sql, array $params = []): ?array {
         return $this->query($sql, $params)->fetch() ?: null;
     }
 
-    
+    public function fetchAll(string $sql, array $params = []): array {
+         return $this->query($sql, $params)->fetchAll();
+    }
+
+    public function lastInsertId(): string {
+        return  $this->pdo->lastInsertId();
+    }
 }
